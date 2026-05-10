@@ -244,9 +244,3 @@ write_shapes_from_geometry(
 ```bash
 pytest
 ```
-
----
-
-## License
-
-MIT
