@@ -97,21 +97,6 @@ Requires **Python ≥ 3.9**.
 
 ---
 
-## Coordinate pipeline
-
-![Solver pipeline](docs/pipeline.svg)
-
-```
-design.py (µm)  →  normalize_design()  →  Z3 Optimizer  →  scale_geometry()  →  output (µm)
-                   [integer grid units]                    [back to microns]
-```
-
-`design.py` always uses **physical micron coordinates**.  
-`run.py` normalizes to integer manufacturing-grid units, solves, then scales all
-results back to microns for every output mode.
-
----
-
 ## Quick start
 
 The workflow is split into two files:
