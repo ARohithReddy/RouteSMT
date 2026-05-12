@@ -42,7 +42,7 @@ Routing a single net from source $s$ to sinks $\{t_i\}$ can be cast as a
 
 $$
 \begin{aligned}
-\text{minimise}_{f} \quad & \sum_{(u,v) \in E} w_{u,v} \cdot f_{u,v} \\[6pt]
+\text{minimise}_{f} \quad & \sum_{(u,v) \in E} w_{u,v} \cdot f_{u,v} \\
 \text{subject to} \quad
   & \sum_{(s,v)\in E} f_{s,v} = |V|-1
     && \text{source emits } |V|-1 \text{ units} \\
