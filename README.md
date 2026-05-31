@@ -50,8 +50,57 @@ subject to f(u,v) ≤ c(u,v)          ∀ (u,v) ∈ E   [capacity]
            Σ f(v,t) = d                              [sink flow]
            Σ f(u,v) = Σ f(v,w)      ∀ v ≠ s,t      [flow conservation]
 ```
----
+ 
+### Shortest Path as a Special Case
+ 
+A single shortest path from `s` to `t` is a unit-flow min-cost problem, where `f(u,v) ∈ {0,1}` indicates whether an edge is on the path. Relaxing the integrality constraint to `0 ≤ f(u,v) ≤ 1` yields the same optimal solution due to the total unimodularity of the constraint matrix.
 
+---
+ 
+## ILP Formulation
+ 
+### Setup
+ 
+| Symbol | Meaning |
+|---|---|
+| `V` | Input terminals to connect |
+| `G = (V′, E)` | Hanan grid over `V` |
+| `s ∈ V` | Chosen source vertex |
+| `V \ {s}` | Sink terminals |
+| `w(u,v)` | Edge cost (rectilinear length) |
+| `y(u,v) ∈ {0,1}` | 1 if edge `(u,v)` is in the RSMT |
+ 
+### Formulation I — Per-Sink Flows
+ 
+Each sink `t` gets its own flow variable `f_t(u,v) ∈ [0,1]`:
+ 
+```
+minimize   Σ w(u,v) · y(u,v)
+ 
+subject to Σ f_t(s,v) = 1                           ∀ t ∈ V\{s}   [unit source flow per sink]
+           Σ f_t(v,t) = 1                           ∀ t ∈ V\{s}   [unit sink absorption]
+           Σ f_t(u,v) = Σ f_t(v,w)                 ∀ t, v ≠ s,t   [flow conservation]
+           y(u,v) ≥ f_t(u,v)                        ∀ t, (u,v)    [edge usage indicator]
+```
+ 
+The `y` variables capture the union of all per-sink paths, forming the Steiner tree.
+ 
+### Formulation II — Aggregated Flow
+ 
+A single aggregated flow variable `f(u,v) ∈ [0, |V|−1]` carries the combined flow for all sinks:
+ 
+```
+minimize   Σ w(u,v) · y(u,v)
+ 
+subject to Σ f(s,v) = |V| − 1                                      [total source flow]
+           Σ f(v,t) = 1                              ∀ t ∈ V\{s}   [unit sink absorption]
+           Σ f(u,v) = Σ f(v,w)                      ∀ v ≠ s,t      [flow conservation]
+           y(u,v) · (|V|−1) ≥ f(u,v)               ∀ (u,v)        [edge usage indicator]
+```
+ 
+This formulation uses fewer variables than Formulation I and is generally more compact.
+ 
+---
 ### 3 · Multi-layer extension
 
 Real VLSI routing uses a stack of metal layers connected by vias.
