@@ -37,25 +37,19 @@ a Steiner point that is *not* a pin but is required to minimise total wire lengt
 
 ### 2 · Min-cost flow formulation
 
-Routing a single net from source $s$ to sinks $\{t_i\}$ can be cast as a
-**min-cost flow** problem on the Hanan-grid graph $G = (V', E)$:
-
-$$
-\begin{aligned}
-\text{minimise}_{f} \quad & \sum_{(u,v) \in E} w_{u,v} \cdot f_{u,v} \\
-\text{subject to} \quad
-  & \sum_{(s,v)\in E} f_{s,v} = |V|-1
-    && \text{source emits } |V|-1 \text{ units} \\
-  & \sum_{(v,t)\in E} f_{v,t} = 1
-    && \forall\, t \in V \setminus \{s\} \\
-  & \sum_{(u,v)\in E} f_{u,v} = \sum_{(v,w)\in E} f_{v,w}
-    && \forall\, v \in V' \setminus \{s,t\} \\
-  & f_{u,v} \in [0,\; |V|-1]
-\end{aligned}
-$$
-
-where $w_{u,v}$ is the rectilinear length of edge $(u,v)$.
-
+Given a directed flow network with:
+- A **source** `s` and **sink** `t`
+- Edge capacities `c(u,v)` and per-unit costs `w(u,v)`
+- Required flow `d`
+The objective is:
+ 
+```
+minimize   Σ w(u,v) · f(u,v)
+subject to f(u,v) ≤ c(u,v)          ∀ (u,v) ∈ E   [capacity]
+           Σ f(s,v) = d                              [source flow]
+           Σ f(v,t) = d                              [sink flow]
+           Σ f(u,v) = Σ f(v,w)      ∀ v ≠ s,t      [flow conservation]
+```
 ---
 
 ### 3 · Multi-layer extension
