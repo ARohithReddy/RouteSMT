@@ -12,7 +12,7 @@ simultaneously.
 
 ## Mathematical background
 
-### 1 · The Rectilinear Steiner Minimum Tree (RSMT)
+### The Rectilinear Steiner Minimum Tree (RSMT)
 
 Given a set of pin locations $V$ in the plane, the RSMT problem asks for the
 shortest rectilinear (Manhattan-distance) tree that connects all pins.
@@ -35,7 +35,7 @@ a Steiner point that is *not* a pin but is required to minimise total wire lengt
 
 ---
 
-### 2 · Min-cost flow formulation
+### Min-cost flow formulation
 
 Given a directed flow network with:
 - A **source** `s` and **sink** `t`
@@ -101,7 +101,7 @@ subject to Σ f(s,v) = |V| − 1                                      [total sou
 This formulation uses fewer variables than Formulation I and is generally more compact.
  
 ---
-### 3 · Multi-layer extension
+### Multi-layer extension
 
 Real VLSI routing uses a stack of metal layers connected by vias.
 z3router extends the single-layer RSMT to a 3-D layer graph:
@@ -149,7 +149,7 @@ The workflow is split into two files:
 | `design.py` | **You edit this.** One file per cell / design. All coordinates in µm. |
 | `run.py` | **Never changes.** Loads any `design.py`, normalizes, solves, outputs. |
 
-**1 · Describe your design in `design.py`:**
+** Describe your design in `design.py`:**
 
 ```python
 from z3router.tech.layer_info import DEFAULT_TECH
@@ -184,7 +184,7 @@ OPTIONS = {
 EDA_WIDTH_MAP = {"poly": 0.014, "tcn": 0.016, "m0": 0.020, "m1": 0.030}
 ```
 
-**2 · Run with your chosen output mode:**
+** Run with your chosen output mode:**
 
 ```bash
 # 3-D matplotlib visualization (axes in µm)
