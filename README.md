@@ -364,4 +364,4 @@ pytest
 
 This repository implements algorithms and techniques learned in the **Introduction to Physical Design Automation(EE5333)** course taught by **Prof. S.Ramprasath** at **IIT Madras**.
 
-I would like to thank Prof. Ramprasad for the excellent course and lectures that inspired this implementation.
+I would like to thank Prof. Ramprasath for the excellent course and lectures that inspired this implementation.
