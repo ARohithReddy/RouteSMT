@@ -354,11 +354,14 @@ pytest
 
 - M. Hanan, "On Steiner's problem with rectilinear distance," *SIAM Journal on
   Applied Mathematics*, 14(2):255–265, 1966.
-- Course notes: *Min-cost flow and RSMT using ILP*, Physical Design / EDA.
+- Course notes: https://www.ee.iitm.ac.in/vlsi/courses/ee5333_2026/start
+- Routing(RSMT): https://github.com/srini229/EE5333_tutorials/tree/master/rt
 - Z3 Theorem Prover: <https://github.com/Z3Prover/z3>
 
 ---
 
-## License
+## Acknowledgments
 
-MIT
+This repository implements algorithms and techniques learned in the **Introduction to Physical Design Automation(EE5333)** course taught by **Prof. S.Ramprasath** at **IIT Madras**.
+
+I would like to thank Prof. Ramprasad for the excellent course and lectures that inspired this implementation.
